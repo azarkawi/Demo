@@ -21,10 +21,3 @@ spec:
         imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: longhorn-storage  # Dit refereert naar het volume hieronder
-          mountPath: /usr/share/nginx/html  # Pad waar NGINX bestanden serveert
-      volumes:
-      - name: longhor-storage
-        persistentVolumeClaim:
-          claimName: nginx-pvc  # Dit verwijst naar je eerder aangemaakte PVC
