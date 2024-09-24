@@ -4,7 +4,7 @@ metadata:
   name: nginx-pvc
 spec:
   accessModes:
-    - ReadWriteOnes
+    - ReadWriteMany
   storageClassName: longhorn  # Zorg dat je Longhorn StorageClass is ingesteld
   resources:
     requests:
