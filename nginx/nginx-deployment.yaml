@@ -22,9 +22,9 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: longhorn-storage  # Dit refereert naar het volume hieronder
+        - name: shared-storage  # Dit refereert naar het volume hieronder
           mountPath: /usr/share/nginx/html  # Pad waar NGINX bestanden serveert
       volumes:
-      - name: longhorn-storage
+      - name: shared-storage
         persistentVolumeClaim:
           claimName: nginx-pvc  # Dit verwijst naar je eerder aangemaakte PVC
