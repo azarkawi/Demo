@@ -20,15 +20,3 @@ spec:
         imagePullPolicy: Always  # Zorgt ervoor dat Kubernetes altijd de nieuwste versie van de image gebruikt
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: nginx-storage
-          mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
-  - metadata:
-      name: nginx-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "longhorn"
-      resources:
-        requests:
-          storage: 5Gi
