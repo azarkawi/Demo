@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 1  # Aantal replica's
+  replicas: 3  # Aantal replica's
   selector:
     matchLabels:
       app: nginx
@@ -20,3 +20,10 @@ spec:
         imagePullPolicy: Always  # Zorgt ervoor dat Kubernetes altijd de nieuwste versie van de image gebruikt
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-storage  # Verwijzing naar het PVC
+          mountPath: /usr/share/nginx/html  # Pad waar de NGINX-bestanden worden geplaatst
+      volumes:
+      - name: nginx-storage
+        persistentVolumeClaim:
+          claimName: nginx-pvc  # Verbindt de PVC met deze volume
