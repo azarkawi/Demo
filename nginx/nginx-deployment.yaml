@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 1 # Aantal replica's
+  replicas: 3  # Aantal replica's
   selector:
     matchLabels:
       app: nginx
@@ -17,13 +17,13 @@ spec:
       containers:
       - name: nginx
         image: nginx:latest
-        imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
+        imagePullPolicy: Always  # Zorgt ervoor dat Kubernetes altijd de nieuwste versie van de image gebruikt
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: longhorn-storage  # Dit refereert naar het volume hieronder
-          mountPath: /usr/share/nginx/html  # Pad waar NGINX bestanden serveert
+        - name: nginx-storage  # Verwijzing naar het PVC
+          mountPath: /usr/share/nginx/html  # Pad waar de NGINX-bestanden worden geplaatst
       volumes:
-      - name: longhorn-storage
+      - name: nginx-storage
         persistentVolumeClaim:
-          claimName: nginx-pvc  # Dit verwijst naar je eerder aangemaakte PVC
+          claimName: nginx-pvc  # Verbindt de PVC met deze volume
