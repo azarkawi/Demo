@@ -4,7 +4,7 @@ metadata:
   name: nginx-statefulset
 spec:
   serviceName: "nginx"
-  replicas: 3  # Aantal replica's
+  replicas: 1  # Aantal replica's
   selector:
     matchLabels:
       app: nginx
