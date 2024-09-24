@@ -4,8 +4,8 @@ metadata:
   name: nginx-pvc
 spec:
   accessModes:
-    - ReadWriteMany  # Verander naar ReadWriteMany om meerdere pods toegang te geven
-  storageClassName: nfs  # Verwijs naar de NFS StorageClass
+    - ReadWriteOnce  # Verander naar ReadWriteMany om meerdere pods toegang te geven
+  storageClassName: longhorn  # Verwijs naar de NFS StorageClass
   resources:
     requests:
       storage: 5Gi  # De grootte van het volume
