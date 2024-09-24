@@ -1,10 +1,12 @@
+
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: nginx-statefulset
+  name: nginx-deployment
+  labels:
+    app: nginx
 spec:
-  serviceName: "nginx"
-  replicas: 2  # Aantal replica's
+  replicas: 5 # Aantal replica's
   selector:
     matchLabels:
       app: nginx
@@ -16,5 +18,6 @@ spec:
       containers:
       - name: nginx
         image: nginx:latest
+        imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
