@@ -21,9 +21,14 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: nginx-storage  # Verwijzing naar het PVC
-          mountPath: /usr/share/nginx/html  # Pad waar de NGINX-bestanden worden geplaatst
-      volumes:
-      - name: nginx-storage
-        persistentVolumeClaim:
-          claimName: nginx-pvc  # Verbindt de PVC met deze volume
+        - name: nginx-storage
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: nginx-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn"
+      resources:
+        requests:
+          storage: 5Gi
