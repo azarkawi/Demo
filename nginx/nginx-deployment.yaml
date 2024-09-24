@@ -18,15 +18,3 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: nginx-storage
-          mountPath: /usr/share/nginx/html  # Pad waar de NGINX-bestanden worden geplaatst
-  volumeClaimTemplates:  # Dit maakt PVC's aan voor elke pod
-  - metadata:
-      name: nginx-storage  # Dit zorgt ervoor dat elke pod een eigen PVC krijgt
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "longhorn"  # Zorg ervoor dat de storage class op Longhorn is ingesteld
-      resources:
-        requests:
-          storage: 5Gi  # Vraag 5Gi opslag aan per pod
