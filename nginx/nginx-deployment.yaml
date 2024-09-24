@@ -1,12 +1,10 @@
-
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: nginx
 spec:
-  replicas: 5 # Aantal replica's
+  serviceName: "nginx"
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -17,7 +15,19 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: nginx
         imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginx-storage
+  volumeClaimTemplates:
+  - metadata:
+      name: nginx-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: longhorn
