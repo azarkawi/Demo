@@ -1,12 +1,9 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  labels:
-    app: nginx
 spec:
-  replicas: 5 # Aantal replica's
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -17,7 +14,74 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: nginx
         imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: nginx-storage-1  # Voor de eerste replica
+      volumes:
+      - name: nginx-storage-1
+        persistentVolumeClaim:
+          claimName: nginx-pvc-1  # PVC voor de eerste replica
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-2
+  template:
+    metadata:
+      labels:
+        app: nginx-2
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: nginx-storage-2  # Voor de tweede replica
+      volumes:
+      - name: nginx-storage-2
+        persistentVolumeClaim:
+          claimName: nginx-pvc-2  # PVC voor de tweede replica
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-3
+  template:
+    metadata:
+      labels:
+        app: nginx-3
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: nginx-storage-3  # Voor de derde replica
+      volumes:
+      - name: nginx-storage-3
+        persistentVolumeClaim:
+          claimName: nginx-pvc-3  # PVC voor de derde replica
