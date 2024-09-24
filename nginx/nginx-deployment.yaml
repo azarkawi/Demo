@@ -47,7 +47,6 @@ spec:
         imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
-
         volumeMounts:
         - mountPath: /usr/share/nginx/html
           name: nginx-storage-2  # Voor de tweede replica
@@ -77,7 +76,6 @@ spec:
         imagePullPolicy: Always # Forceert Kubernetes om altijd de laatste image op te halen
         ports:
         - containerPort: 80
-
         volumeMounts:
         - mountPath: /usr/share/nginx/html
           name: nginx-storage-3  # Voor de derde replica
