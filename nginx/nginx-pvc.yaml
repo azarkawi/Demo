@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: longhorn-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn  # Zorg dat je Longhorn StorageClass is ingesteld
+  resources:
+    requests:
+      storage: 5Gi  # Je kunt dit aanpassen naar jouw behoefte
