@@ -4,8 +4,8 @@ metadata:
   name: nginx-upgrade
   namespace: nginx
 spec:
-  schedule: "*/3 * * * *"  # Voer elke 3 minuten uit
-#  schedule: "0 1 * * *"  # Voer de upgrade elke dag om 1:00 uit
+#  schedule: "*/3 * * * *"  # Voer elke 3 minuten uit
+  schedule: "0 1 * * *"  # Voer de upgrade elke dag om 1:00 uit
   jobTemplate:
     spec:
       template:
