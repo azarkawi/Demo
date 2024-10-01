@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-upgrade-sa
+  namespace: nginx
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: nginx-upgrade-role
+  namespace: nginx
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: nginx-upgrade-rolebinding
+  namespace: nginx
+subjects:
+  - kind: ServiceAccount
+    name: nginx-upgrade-sa
+    namespace: nginx
+roleRef:
+  kind: Role
+  name: nginx-upgrade-role
+  apiGroup: rbac.authorization.k8s.io
+
