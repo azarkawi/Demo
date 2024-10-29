@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-rwx-pvc
+  namespace: nfs-system  # Specificeer de namespace hier
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs-client"  # Zorg ervoor dat deze overeenkomt met de StorageClass van de provisioner
+  resources:
+    requests:
+      storage: 1Gi
