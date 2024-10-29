@@ -21,7 +21,7 @@ spec:
         - containerPort: 80
         volumeMounts:
         - mountPath: /usr/share/nginx/html  # Pad waar de gegevens moeten worden gemount in de NGINX-container
-          name: nginx-storage
+          name: nfs-volume
         resources:  # Dit hoort onder de containerdefinitie
           requests:
             memory: "128Mi"
@@ -30,6 +30,6 @@ spec:
             memory: "500Mi"
             cpu: "500m"
       volumes:
-      - name: nginx-storage
+      - name: nfs-volume
         persistentVolumeClaim:
-          claimName: nginx-rwx-pvc
+          claimName: nfs-pvc
