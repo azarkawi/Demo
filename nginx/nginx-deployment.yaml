@@ -22,14 +22,14 @@ spec:
         volumeMounts:
         - mountPath: /usr/share/nginx/html  # Pad waar de gegevens moeten worden gemount in de NGINX-container
           name: nginx-storage
-      volumes:
-      - name: nginx-storage
-        persistentVolumeClaim:
-          claimName: nginx-rwx-pvc
-        resources:
+        resources:  # Dit hoort onder de containerdefinitie
           requests:
             memory: "128Mi"
             cpu: "250m"
           limits:
             memory: "500Mi"
             cpu: "500m"
+      volumes:
+      - name: nginx-storage
+        persistentVolumeClaim:
+          claimName: nginx-rwx-pvc
