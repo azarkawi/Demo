@@ -10,4 +10,3 @@ spec:
   nfs:
     path: /data/nfs
     server: 192.168.151.206
-  storageClassName: longhorn
