@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: nginx-upgrade-sa
+  name: nginx-upgrade-sa-dev
   namespace: nginx-dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: nginx-upgrade-role
+  name: nginx-upgrade-role-dev
   namespace: nginx-dev
 rules:
   - apiGroups: ["apps"]
@@ -17,7 +17,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: nginx-upgrade-rolebinding
+  name: nginx-upgrade-rolebinding-dev
   namespace: nginx-dev
 subjects:
   - kind: ServiceAccount
