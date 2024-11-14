@@ -21,9 +21,9 @@ metadata:
   namespace: nginx-dev
 subjects:
   - kind: ServiceAccount
-    name: nginx-upgrade-sa
+    name: nginx-upgrade-sa-dev  # Consistente naamgeving
     namespace: nginx-dev
 roleRef:
   kind: Role
-  name: nginx-upgrade-role
+  name: nginx-upgrade-role-dev  # Consistente verwijzing naar Role
   apiGroup: rbac.authorization.k8s.io
