@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: nginx-upgrade
+  name: nginx-upgrade-sa-dev
   namespace: nginx-dev
 spec:
 #  schedule: "*/3 * * * *"  # Voer elke 3 minuten uit
