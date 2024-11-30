@@ -9,5 +9,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30085 # Dit is een voorbeeld, je kunt een ander poortnummer kiezen tussen 30000 en 32767
-  type: NodePort
+  type: LoadBalancer 
